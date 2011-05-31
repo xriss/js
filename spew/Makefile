@@ -8,13 +8,13 @@ full: art sfx bake
 FORCE:
 
 bake:
-	../exe/lua bake.lua
+	../bin/exe/lua bake.lua
 
 art: FORCE
-	../exe/lua art/art.lua
+	../bin/exe/lua art/art.lua
 
 sfx: FORCE
-	../exe/lua art/sfx.lua
+	../bin/exe/lua art/sfx.lua
 
 # the cookie used here is ip locked and changes often so reasonably safe to expose here
 # its probably out of date by the time anyone else gets to know it, still would be nice to
