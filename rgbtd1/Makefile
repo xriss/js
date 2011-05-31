@@ -9,13 +9,13 @@ full: art sfx bake
 FORCE:
 
 bake:
-	../exe/lua bake.lua
+	../bin/exe/lua bake.lua
 
 fast:
-	../exe/lua bake.lua noart
+	../bin/exe/lua bake.lua noart
 
 art: FORCE
-	../exe/lua art/art.lua
+	../bin/exe/lua art/art.lua
 
 sfx: FORCE
-	../exe/lua art/sfx.lua
+	../bin/exe/lua art/sfx.lua

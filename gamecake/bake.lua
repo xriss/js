@@ -1,11 +1,11 @@
 
 -- make sure we have the modules we need in the path
-package.path =package.path.. ";../lua/?.lua;../lua/?/init.lua"
+package.path =package.path.. ";../bin/lua/?.lua;../bin/lua/?/init.lua"
 
 if os.getenv("SHELL") and string.sub(os.getenv("SHELL"),1,5)== "/bin/" then
-	package.cpath=package.cpath..";../exe/?.so"
+	package.cpath=package.cpath..";../bin/exe/?.so"
 else
-	package.cpath=package.cpath..";../exe/?.dll"
+	package.cpath=package.cpath..";../bin/exe/?.dll"
 end
 
 
