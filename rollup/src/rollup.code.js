@@ -20,15 +20,18 @@ rollup={}; // a global place to keep our cake
 	for(var t in game.ds )
 	{
 		var d=game.ds[t];
-		for(var i=1; i<=d; i++)
+		game.preloadimgs["d"+d]="art/die/d"+d+".png";
+/*
+ * 		for(var i=1; i<=d; i++)
 		{
 			game.preloadimgs["d"+d+"."+i]="art/die/d"+d+"."+i+".png";
 		}
+*/
 	}
 
 
 	game.opts.name="rollup";
-	game.opts.width=460;
+	game.opts.width=480;
 	game.opts.height=320;
 	game.opts.backcolor="#ffffff";
 	

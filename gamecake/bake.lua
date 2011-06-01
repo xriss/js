@@ -172,7 +172,9 @@ print('**SKIPPING**ART**BUILD**STEP**')
 print('****')
 else
 
+
 for i,v in ipairs(bake.files_min_js) do
+print('compressing '..v)
 	bake.execute( bake.cd_base , bake.cmd.java ,
 "-jar ../class/compiler.jar --js_output_file "..bake.cd_out.."/"..v..".min.js --js "..bake.cd_out.."/"..v..".js")
 
@@ -199,6 +201,20 @@ end
 	end
 	
 -- build an application cache
+
+	for i,v in ipairs(cache_files) do
+		local v1,v2
+		if type(v)=="table" then
+			v1=v[1]
+			v2=v[2]
+		else
+			v1=v
+			v2=v
+		end
+print('caching '..v1.." as "..v2)
+		bake.create_dir_for_file(bake.cd_out.."/cache/"..v2)
+		bake.copyfile(v1,bake.cd_out.."/cache/"..v2)
+	end
 
 	local r=bake.findfiles{basedir=bake.cd_out.."/cache",dir=".",filter=""}
 	local mc=table.concat(r.ret,"\n").."\n"

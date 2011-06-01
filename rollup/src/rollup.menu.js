@@ -14,7 +14,8 @@
 	for(var t in game.ds )
 	{
 		var d=game.ds[t];
-		var it=gamecake.gfx.sheet({auto:true,parent:us.sheet,px:0,py:t*40,sx:100,sy:100,sz:0.40,url:gamecake.images["d"+d+"."+d].url});
+		var it=gamecake.gfx.sheet({auto:true,parent:us.sheet,px:0,py:t*40,sx:100,sy:100,sz:0.40,url:gamecake.images["d"+d].url});
+		it.fx=100*(d-1);
 		it.div.data("dice",d);
 		it.div.click(function(e){
 			game.dice.add_die($(this).data("dice"));
@@ -22,7 +23,7 @@
 		us["sheet_but"+d]=it;
 	}
 		
-		var it=gamecake.gfx.sheet({auto:true,parent:us.sheet,px:0,py:7*40,sx:100,sy:100,sz:0.40,url:gamecake.images["d"+2+"."+1].url});
+		var it=gamecake.gfx.sheet({auto:true,parent:us.sheet,px:0,py:7*40,sx:100,sy:100,sz:0.40,url:gamecake.images["d"+2].url});
 		it.div.data("dice",0);
 		it.div.click(function(e){
 			game.dice.remove_dice();
