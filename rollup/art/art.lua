@@ -36,9 +36,13 @@ for _,d in ipairs(ds) do
 		
 		for i=1,#pix,4 do -- make pure white transparent
 			local a,r,g,b=pix[i],pix[i+1],pix[i+2],pix[i+3]
+--			g=math.floor((r+g+b)/3)
+			r=g
+			b=g
 			if r==255 and g==255 and b==255 then
-				pix[i]=0
+				a=0
 			end
+			pix[i],pix[i+1],pix[i+2],pix[i+3]=a,r,g,b
 		end
 		
 		ga:pixels(100*(i-1),0,100,100,pix)

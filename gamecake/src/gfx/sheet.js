@@ -114,8 +114,9 @@ gamecake.gfx.sheet=function(opts){
 		var t="";
 		
 		if( ((drawn.sz)!=(self.sz)))
-			{ changed=true; drawn.sz=self.sz; t="scale("+drawn.sz+") "+t; }
-			
+			{ changed=true; drawn.sz=self.sz; }
+			 t="scale("+drawn.sz+") "+t;
+			 
 		if( ((drawn.rz)!=(self.rz)) )
 			{ changed=true; drawn.rz=self.rz; t="rotate("+drawn.rz+"deg) "+t; }
 			

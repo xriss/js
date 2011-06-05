@@ -15,6 +15,9 @@ cache_files={
 "art/icon.png",
 "art/splash.png",
 
+"art/menu.png",
+"art/readme.png",
+
 "jslib/jquery.min.js",
 
 {"out/rollup.html","rollup.html",},

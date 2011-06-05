@@ -12,21 +12,14 @@ rollup={}; // a global place to keep our cake
 	game.p={};
 	
 	game.preloadimgs={
-//		back:"art/test/layout.png",
-//		plots:"art/plots4.png",
-//		blocks:"art/blocks.png"
+		readme:"art/readme.png",
+		menu:"art/menu.png"
 	};
 	
 	for(var t in game.ds )
 	{
 		var d=game.ds[t];
 		game.preloadimgs["d"+d]="art/die/d"+d+".png";
-/*
- * 		for(var i=1; i<=d; i++)
-		{
-			game.preloadimgs["d"+d+"."+i]="art/die/d"+d+"."+i+".png";
-		}
-*/
 	}
 
 
@@ -40,6 +33,12 @@ rollup={}; // a global place to keep our cake
 		cake.setup();
 		game.dice.setup();
 		game.menu.setup();
+
+    var bubble = new google.bookmarkbubble.Bubble();
+    bubble.hasHashParameter = function() { return false; }; // we will nag until we are fullscreen
+    bubble.setHashParameter = function() {};
+    bubble.showIfAllowed();
+
 
 		return game;
 	};
@@ -57,19 +56,6 @@ rollup={}; // a global place to keep our cake
 	};
 	
 	game.update=function(cake){
-
-// magic scale
-		var p=game.$this.parent();
-		var pw=p.width();
-		var ph=p.height();
-		var z=(pw/game.opts.width);
-		if( (z*game.opts.height) > ph ) { z=(ph/game.opts.height); }	
-		if( game.lastzoom!=z )
-		{
-			game.lastzoom=z;
-			game.$this.css("zoom",z);
-		}
-
 		cake.update();
 		game.menu.update();
 		game.dice.update();

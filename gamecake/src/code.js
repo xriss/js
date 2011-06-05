@@ -18,11 +18,13 @@ gamecake.ticks=0;
 	$.fn.gamecake = function(opts) {
 		
 		gamecake.opts=opts;
+		gamecake.game=opts.game;
 		
 		return this.each(function() {
 			var game=opts.game;
 			var $this = $(this);
 			game.$this=$this;
+			game.lastzoom=1;
 			
 			$this.css("width",game.opts.width+"px");
 			$this.css("height",game.opts.height+"px");
@@ -42,14 +44,17 @@ gamecake.ticks=0;
 			
 			$this.keydown(gamecake.code.input.keydown);
 			$this.keyup(gamecake.code.input.keyup);
-			$this.mousedown(gamecake.code.input.keydown);
-			$this.mouseup(gamecake.code.input.keyup);
-			$("body").mousemove(function(e){return gamecake.code.input.mousemove(e,$this)});
+//			$this.mousedown(gamecake.code.input.keydown);
+//			$this.mouseup(gamecake.code.input.keyup);
+			$("html").mousemove(function(e){return gamecake.code.input.mousemove(e,game)});
+			$("html").mousedown(function(e){return gamecake.code.input.mousedown(e,game)});
+			$("html").mouseup(function(e){return gamecake.code.input.mouseup(e,game)});			
 
-			$("body").bind("touchstart",function(e){return gamecake.code.input.touchdown(e,$this)});
-			$("body").bind("touchmove", function(e){return gamecake.code.input.touchmove(e,$this)});
-			$("body").bind("touchend",  function(e){return gamecake.code.input.touchup(e,$this)});
-			
+			$("body").bind("touchstart",function(e){return gamecake.code.input.touchdown(e,game);});
+			$("body").bind("touchmove", function(e){return gamecake.code.input.touchmove(e,game);});
+			$("body").bind("touchend",  function(e){return gamecake.code.input.touchup(e,game);});
+			$("body").bind("touchcancel",  function(e){return gamecake.code.input.touchup(e,game);});
+
 			var requestAnimationFrame = (function(){
 			  return  window.requestAnimationFrame       || 
 					  window.webkitRequestAnimationFrame || 
@@ -70,6 +75,21 @@ gamecake.ticks=0;
 				
 				if( ! gamecake.code.preload.check(game) ) { return; } // wait to preload
 				if( gamecake.state!=game ) { gamecake.state=game.setup(gamecake,opts); } // setup after preload
+				
+// magic scale
+				var p=game.$this.parent();
+				var pw=p.width();
+				var ph=p.height();
+				var z=(pw/game.opts.width);
+				if( (z*game.opts.height) > ph ) { z=(ph/game.opts.height); }	
+				if( game.lastzoom!=z )
+				{
+					game.lastzoom=z;
+					game.$this.css("zoom",z);
+					game.$this.css("position","relative");
+					game.$this.css("left",Math.floor((pw-(game.opts.width*z))/(2*z))+"px");
+					game.$this.css("top",Math.floor((ph-(game.opts.height*z))/(2*z))+"px");
+				}
 				
 				gamecake.code.input.update();
 				game.update(gamecake,opts);
