@@ -220,6 +220,7 @@ print('caching '..v1.." as "..v2)
 	local mc=table.concat(r.ret,"\n").."\n"
 	local fp=io.open(bake.cd_out.."/cache/cache.manifest","w")
 	fp:write("CACHE MANIFEST\n")
+	fp:write("#Updated on "..os.date().."\n")
 	fp:write(mc)
 	fp:close()
 	

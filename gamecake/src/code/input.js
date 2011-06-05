@@ -34,12 +34,8 @@
 	
 	self.keydown=function(event)
 	{
-		var key="button"; // we also pull in mouse clicks here
-		if(event.type!="mousedown")
-		{
-			key=getkey(event.keyCode);
-			input.set_ascii.push(event.keyCode);
-		}
+		var key=getkey(event.keyCode);
+		input.set_ascii.push(event.keyCode);
 		if (key) { 
 			input.set_down[key]=true;
 		}
@@ -47,46 +43,62 @@
 	};
 	self.keyup=function(event)
 	{
-		var key="button"; // we also pull in mouse clicks here
-		if(event.type!="mouseup") { key=getkey(event.keyCode); }
+		var key=getkey(event.keyCode);
 		if (key) { 
 			input.set_up[key]=true;
 		}
 		return false;
 	};
 
-	self.touchdown=function(event,$this)
+	self.touchdown=function(event,game)
 	{
-		var tevent =  event.originalEvent.touches.item(0);  
-		input.x=tevent.clientX;
-		input.y=tevent.clientY;
+		event.originalEvent.preventDefault();
+		var tevent =  event.originalEvent.touches.item(0);
+		if(tevent) { self.mousemove(tevent,game); }
 		input.set_down["button"]=true;
-//		return false;
+		return false;
 	};
-	self.touchup=function(event,$this)
+	self.touchup=function(event,game)
 	{
-		var tevent =  event.originalEvent.touches.item(0);  
-		input.x=tevent.clientX;
-		input.y=tevent.clientY;
+		event.originalEvent.preventDefault();
+		var tevent =  event.originalEvent.touches.item(0);
+		if(tevent) { self.mousemove(tevent,game); }
 		input.set_up["button"]=true;
-//		return false;
+		return false;
 	};
-	self.touchmove=function(event,$this)
+	self.touchmove=function(event,game)
 	{
-		var tevent =  event.originalEvent.touches.item(0);  
-		input.x=tevent.clientX;
-		input.y=tevent.clientY;
-		event.preventDefault();  
-		return false;  
+		event.originalEvent.preventDefault();
+		var tevent =  event.originalEvent.touches.item(0);
+		if(tevent) { self.mousemove(tevent,game); }
+		return false;
 	};
 	
-	self.mousemove=function(event,$this)
+	self.mousemove=function(event,game)
 	{
-  		var pos=$this.offset();
-		input.x=event.pageX-pos.left;
-		input.y=event.pageY-pos.top;
+  		var pos=game.$this.offset();
+		input.x=(event.pageX-(pos.left*game.lastzoom))/game.lastzoom; // getting local coords is a problem
+		input.y=(event.pageY-(pos.top*game.lastzoom))/game.lastzoom;
 //		rollup.dbg.div.html(input.x + " : " + input.y );
 //		console.log( input.x + " : " + input.y );
+		return false;
+	};
+	self.mousedown=function(event,game)
+	{
+		self.mousemove(event,game);
+		if(event.button==0)
+		{
+			input.set_down["button"]=true;
+		}
+		return false;
+	};
+	self.mouseup=function(event,game)
+	{
+		self.mousemove(event,game);
+		if(event.button==0)
+		{
+			input.set_up["button"]=true;
+		}
 		return false;
 	};
 
@@ -100,6 +112,7 @@
 		for(i in input.set_down) {
 			if(!input.state[i])
 			{
+//console.log("down "+i)
 				input.down[i]=true;
 				input.state[i]=true;
 			}
@@ -107,6 +120,7 @@
 		for(i in input.set_up) {
 			if(input.state[i])
 			{
+//console.log("up "+i)
 				input.up[i]=true;
 				input.state[i]=false;
 			}
