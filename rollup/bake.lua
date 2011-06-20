@@ -1,7 +1,14 @@
 
-name="rollup"
+dofile("../bin/lua/wetgenes/bake/pathfix.lua")
 
-cache_files={
+local gamecake=require("wetgenes.bake.gamecake")
+
+local tab={}
+tab.arg={...}
+
+tab.name="rollup"
+
+tab.cache_files={
 
 "art/die/d2.png",
 "art/die/d4.png",
@@ -27,4 +34,5 @@ cache_files={
 
 }
 
-dofile '../gamecake/bake.lua'
+
+gamecake.build(tab)
