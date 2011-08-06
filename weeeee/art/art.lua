@@ -13,7 +13,7 @@ function exists(n)
 end
 
 
-do
+if false then
 
 local ds={2,4,6,8,10,12,20}
 
