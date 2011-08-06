@@ -36,6 +36,11 @@
 				
 		game.sled.setup(us,us.p[8]);
 		game.tiles.setup(us,us.p[8]);
+		
+		
+		us.$tune = $('<audio loop src="art/mp3/tune.mp3" ></audio>');
+		us.$tune[0].play();
+
 	};
 
 	us.clean=function()

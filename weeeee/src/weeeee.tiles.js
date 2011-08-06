@@ -6,6 +6,78 @@
 	
 	us.t=[];
 	
+	us.tile=null;
+	us.block=null;
+	
+	us.get_next_tile=function()
+	{
+		if( (!us.block) || (b.idx>=b.wide) )
+		{
+			us.get_next_block();
+		}
+		
+		var ts={
+			flat_lft:{
+				floor:100,
+				side:50,
+				url:gamecake.images.tlft.url
+			},
+			flat_mid:{
+				floor:100,
+				side:0,
+				url:gamecake.images.tmid.url
+			},
+			flat_rgt:{
+				floor:100,
+				side:-50,
+				url:gamecake.images.trgt.url
+			},
+			space:{
+				url:null
+			}
+		};
+		
+		var b=us.block;
+		var t={};
+		
+		switch(b.state)
+		{
+			case "flat":
+				if(b.idx==0) // first
+				{
+				}
+				else
+				if(b.idx==b.wide-1) // last
+				{
+				}
+				else // middle
+				{
+				}
+			break;
+		}
+		b.idx++;
+		us.tile=t;
+		return t;
+	}
+	
+	us.get_next_block=function()
+	{
+		var b={};
+			
+		if(us.block)
+		{
+		}
+		else
+		{
+			b.idx=0;
+			b.top=200;
+			b.wide=10;
+			b.state="flat";
+		}
+		us.block=b;
+		return b;
+	}
+	
 	us.setup=function(play,sheet)
 	{
 		us.play=play;
