@@ -4,3 +4,4 @@
 #include "src/weeeee.code.js"
 #include "src/weeeee.splash.js"
 #include "src/weeeee.play.js"
+#include "src/weeeee.tiles.js"
