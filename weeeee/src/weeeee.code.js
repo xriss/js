@@ -29,8 +29,8 @@ weeeee={}; // a global place to keep our cake
 	game.setup=function(cake,opts){
 			
 		cake.setup();
-		game.dice.setup();
-		game.menu.setup();
+//		game.dice.setup();
+//		game.menu.setup();
 
     var bubble = new google.bookmarkbubble.Bubble();
     bubble.hasHashParameter = function() { return false; }; // we will nag until we are fullscreen
@@ -42,21 +42,21 @@ weeeee={}; // a global place to keep our cake
 	};
 	
 	game.clean=function(cake){
-		game.dice.clean();
-		game.menu.clean();
+//		game.dice.clean();
+//		game.menu.clean();
 		cake.clean();		
 	};
 	
 	game.draw=function(cake){
 		cake.draw();
-		game.menu.draw();
-		game.dice.draw();
+//		game.menu.draw();
+//		game.dice.draw();
 	};
 	
 	game.update=function(cake){
 		cake.update();
-		game.menu.update();
-		game.dice.update();
+//		game.menu.update();
+//		game.dice.update();
 	};
 	
 })(weeeee);
