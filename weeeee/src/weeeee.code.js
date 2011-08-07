@@ -24,6 +24,7 @@ weeeee={}; // a global place to keep our cake
 		trgt:"art/tiles/rgt.png",
 		sled:"art/sled.png",
 		sled_e:"art/e.png",
+		score:"art/score.png",
 		splash:"art/splash.png"
 	};
 	

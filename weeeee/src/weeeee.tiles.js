@@ -73,7 +73,7 @@
 		if(us.block)
 		{
 			b.idx=0;
-			b.top=200+(Math.random()*100)-50;
+			b.top=200+(Math.random()*200);
 			b.wide=10;
 			b.state="flat";
 		}

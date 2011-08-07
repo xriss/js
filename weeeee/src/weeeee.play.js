@@ -33,12 +33,30 @@
 		us.p[7]=gamecake.gfx.sheet({parent:us.sheet,sx:us.hx,sy:us.hy,url:gamecake.images.p10.url,px:us.hx}).draw();
 		
 		us.p[8]=gamecake.gfx.sheet({parent:us.sheet,sx:us.hx,sy:us.hy}).draw();
+
+		us.p[9]=gamecake.gfx.sheet({parent:us.sheet,sx:us.hx,sy:us.hy,url:gamecake.images.score.url}).draw();
+		
+		us.$score=$("<div>0</div>");
+		us.$score.css({
+			top:12,
+			right:235,
+			width:200,
+			height:50,
+			textAlign:"right",
+			fontSize:"40px",
+			fontFamily:"Arial",
+			position:"absolute"});
+		us.p[9].div.append(us.$score);
 				
 		game.sled.setup(us,us.p[8]);
 		game.tiles.setup(us,us.p[8]);
 		
 		
 		us.$tune = $('<audio loop ><source src="art/mp3/tune.mp3" /><source src="art/mp3/tune.ogg" /></audio>');
+		us.$tune[0].addEventListener('ended', function() {
+			this.currentTime = 0;
+			this.play();
+		}, false);
 		us.$tune[0].play();
 
 	};
@@ -48,7 +66,7 @@
 		game.sled.clean();
 		game.tiles.clean();
 		
-		for(i=0;i<=9;i++)
+		for(i=0;i<us.p.length;i++)
 		{
 			us.p[i].clean();
 		}
@@ -60,7 +78,7 @@
 	{
 		game.sled.draw();
 		us.sheet.draw();
-		for(i=0;i<=8;i++)
+		for(i=0;i<us.p.length;i++)
 		{
 			us.p[i].draw();
 		}
@@ -71,11 +89,20 @@
 	{
 		us.sheet.update();
 
-		var speed=4;
+		var speed=game.sled.speed;
 		
+		if(game.sled.state!="dead")
+		{
+			us.score=Math.floor(us.dx/10);
+			us.$score.text(us.score);
+			
+			if(speed<4)  { speed=4; }
+		}
+		if(speed>80) { speed=80; }
+
 		us.dx+=speed; // position through level for score or whatever
 		
-		for(i=0;i<=8;i++)
+		for(i=0;i<us.p.length;i++)
 		{
 			var v=us.p[i];
 			var dx=0;

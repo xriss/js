@@ -10,6 +10,7 @@ tab.name="weeeee"
 
 tab.cache_files={
 
+"art/score.png",
 "art/e.png",
 "art/sled.png",
 "art/by.png",
@@ -25,6 +26,7 @@ tab.cache_files={
 "art/tiles/rgt.png",
 
 "art/mp3/tune.mp3",
+"art/mp3/tune.ogg",
 
 "jslib/jquery.min.js",
 
