@@ -11,11 +11,6 @@
 	
 	us.get_next_tile=function()
 	{
-		if( (!us.block) || (b.idx>=b.wide) )
-		{
-			us.get_next_block();
-		}
-		
 		var ts={
 			flat_lft:{
 				floor:100,
@@ -37,7 +32,12 @@
 			}
 		};
 		
-		var b=us.block;
+		var b=us.block;		
+		if( (!b) || (b.idx>=b.wide) )
+		{
+			b=us.get_next_block();
+		}
+		
 		var t={};
 		
 		switch(b.state)
@@ -45,13 +45,19 @@
 			case "flat":
 				if(b.idx==0) // first
 				{
+					t.s=ts.flat_lft;
+					t.y=b.top;
 				}
 				else
 				if(b.idx==b.wide-1) // last
 				{
+					t.s=ts.flat_rgt;
+					t.y=b.top;
 				}
 				else // middle
 				{
+					t.s=ts.flat_mid;
+					t.y=b.top;
 				}
 			break;
 		}
@@ -66,6 +72,10 @@
 			
 		if(us.block)
 		{
+			b.idx=0;
+			b.top=200+(Math.random()*100)-50;
+			b.wide=10;
+			b.state="flat";
 		}
 		else
 		{
@@ -85,7 +95,10 @@
 		
 		for(i=0;i<8;i++)
 		{
-			us.t[i]=gamecake.gfx.sheet({parent:us.sheet,sx:100,sy:480,url:gamecake.images.tmid.url,px:i*100,py:200+(i*10)}).draw();
+			us.get_next_tile();
+			
+			us.t[i]=gamecake.gfx.sheet({parent:us.sheet,sx:100,sy:480,url:us.tile.s.url,px:i*100,py:us.tile.y-us.tile.s.floor}).draw();
+			us.t[i].tile=us.tile;
 		}
 	};
 
@@ -106,17 +119,39 @@
 	};
 
 	us.update=function(speed)
-	{
+	{		
 		for(i=0;i<8;i++)
 		{
 			us.t[i].px-=speed;
 			if(us.t[i].px<-100)
 			{
 				us.t[i].px+=800;
+				
+// we expect speed to be < 100 so only one tile a frame ever jumps like this
+			
+				us.get_next_tile();
+				
+				us.t[i].tile=us.tile;
+				us.t[i].url=us.tile.s.url;
+				us.t[i].py=us.tile.y-us.tile.s.floor;
+
 			}
 			us.t[i].update();
 		}
 	};
-	
+
+// given a y, find a tile
+	us.find_tile=function(x)
+	{
+		for(i=0;i<8;i++)
+		{
+			var v=us.t[i];
+			if( (v.px<=x) && (v.px+100>=x) )
+			{
+				return v;
+			}
+		}
+		return null;
+	}
 
 })(weeeee);

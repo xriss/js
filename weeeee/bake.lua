@@ -10,6 +10,8 @@ tab.name="weeeee"
 
 tab.cache_files={
 
+"art/e.png",
+"art/sled.png",
 "art/by.png",
 "art/icon.png",
 "art/splash.png",

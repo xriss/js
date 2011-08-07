@@ -56,12 +56,12 @@ gamecake.ticks=0;
 			$("body").bind("touchcancel",  function(e){return gamecake.code.input.touchup(e,game);});
 
 			var requestAnimationFrame = (function(){
-			  return  /*window.requestAnimationFrame       || 
+/*			  return  window.requestAnimationFrame       || 
 					  window.webkitRequestAnimationFrame || 
 					  window.mozRequestAnimationFrame    || 
 					  window.oRequestAnimationFrame      || 
-					  window.msRequestAnimationFrame     || 
-					  */function(callback,element){
+					  window.msRequestAnimationFrame     || */
+					  return function(callback,element){
 						  window.setTimeout(callback, 1000 / 50);
 					  };
 			})();
