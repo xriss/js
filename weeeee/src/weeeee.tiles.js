@@ -93,6 +93,9 @@
 		us.play=play;
 		us.sheet=sheet;
 		
+		us.tile=null;
+		us.block=null;
+	
 		for(i=0;i<8;i++)
 		{
 			us.get_next_tile();

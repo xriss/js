@@ -13,6 +13,7 @@
 		
 		us.data=[];
 		us.state="none";
+		us.score=0;
 		
 		us.sheet=gamecake.gfx.sheet({parent:game.sheet,px:0,py:0,sx:us.hx,sy:us.hy});
 
@@ -34,8 +35,11 @@
 		
 		us.p[8]=gamecake.gfx.sheet({parent:us.sheet,sx:us.hx,sy:us.hy}).draw();
 
-		us.p[9]=gamecake.gfx.sheet({parent:us.sheet,sx:us.hx,sy:us.hy,url:gamecake.images.score.url}).draw();
+		us.p[9]=gamecake.gfx.sheet({parent:us.sheet,sx:us.hx,sy:us.hy,url:gamecake.images.over.url,px:640,py:0}).draw();
+
+		us.p[10]=gamecake.gfx.sheet({parent:us.sheet,sx:us.hx,sy:us.hy,url:gamecake.images.score.url}).draw();
 		
+
 		us.$score=$("<div>0</div>");
 		us.$score.css({
 			top:12,
@@ -46,7 +50,7 @@
 			fontSize:"40px",
 			fontFamily:"Arial",
 			position:"absolute"});
-		us.p[9].div.append(us.$score);
+		us.p[10].div.append(us.$score);
 				
 		game.sled.setup(us,us.p[8]);
 		game.tiles.setup(us,us.p[8]);
@@ -63,6 +67,8 @@
 
 	us.clean=function()
 	{
+		us.$tune[0].pause();
+		
 		game.sled.clean();
 		game.tiles.clean();
 		
@@ -97,6 +103,15 @@
 			us.$score.text(us.score);
 			
 			if(speed<4)  { speed=4; }
+		}
+		else
+		{
+			if(speed<3) { us.p[9].px-=3; } //make sure we get onto the screen
+			else
+			{
+				us.p[9].px-=speed; // scroll on the dead screen sarcasticly
+			}
+			if(us.p[9].px<=0) { us.p[9].px=0; us.state="dead"; }
 		}
 		if(speed>80) { speed=80; }
 
@@ -133,6 +148,24 @@
 		
 		game.tiles.update(speed);
 		game.sled.update(speed);
+		
+		
+		if(us.state=="dead") // clicky
+		{
+			if(gamecake.input.down.button)
+			{
+				if(gamecake.input.y>300)
+				{
+					game.state_next="splash";
+				}
+				else // submit score
+				{
+					var t=Math.floor(((new Date()).getTime())/(1000*60*60*24)); // number of days since the epoch
+					var url="http://leeds-hack.appspot.com/score/submit?game=weeeee&score="+us.score+"&dumb="+(us.score*t);
+					window.location.href=url;
+				}
+			}
+		}
 
 	};
 	

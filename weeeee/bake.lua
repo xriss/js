@@ -11,6 +11,7 @@ tab.name="weeeee"
 tab.cache_files={
 
 "art/score.png",
+"art/over.png",
 "art/e.png",
 "art/sled.png",
 "art/by.png",
