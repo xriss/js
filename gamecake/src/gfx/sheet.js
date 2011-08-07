@@ -125,7 +125,7 @@ gamecake.gfx.sheet=function(opts){
 				var ot=drawn.ox+" "+drawn.oy;
 // one of these will probably work				
 				c.webkitTransformOrigin=ot;
-				c.mozTransformOrigin=ot;
+				c.MozTransformOrigin=ot;
 				c.oTransformOrigin=ot;
 				c.msTransformOrigin=ot;
 				c.transformOrigin=ot;
@@ -146,7 +146,7 @@ gamecake.gfx.sheet=function(opts){
 
 // one of these will probably work				
 		c.webkitTransform=t;
-		c.mozTransform=t;
+		c.MozTransform=t;
 		c.oTransform=t;
 		c.msTransform=t;
 		c.transform=t;

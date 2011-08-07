@@ -38,7 +38,7 @@
 		game.tiles.setup(us,us.p[8]);
 		
 		
-		us.$tune = $('<audio loop src="art/mp3/tune.mp3" ></audio>');
+		us.$tune = $('<audio loop ><source src="art/mp3/tune.mp3" /><source src="art/mp3/tune.ogg" /></audio>');
 		us.$tune[0].play();
 
 	};
@@ -71,7 +71,7 @@
 	{
 		us.sheet.update();
 
-		var speed=19;
+		var speed=4;
 		
 		us.dx+=speed; // position through level for score or whatever
 		
