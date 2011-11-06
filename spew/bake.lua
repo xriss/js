@@ -1,4 +1,11 @@
+dofile("../bin/lua/wetgenes/bake/pathfix.lua")
 
-name="spew"
+local gamecake=require("wetgenes.bake.gamecake")
 
-dofile '../gamecake/bake.lua'
+local tab={}
+tab.arg={...}
+
+tab.name="spew"
+
+gamecake.build(tab)
+

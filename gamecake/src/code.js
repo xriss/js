@@ -198,12 +198,13 @@ if( gamecake.sniff.idiot_phone || gamecake.sniff.idiot_pad || gamecake.sniff.idi
 				gamecake.time_todo+=(now-gamecake.time_last);
 				if(gamecake.time_todo > 200) { gamecake.time_todo=200; }
 				
-				while(gamecake.time_todo>=0)
+				while(gamecake.time_todo>=(1000/60)/2)
 				{
 					gamecake.time_todo-=(1000/60);
 					gamecake.code.input.update();
 					game.update(gamecake,opts);
 				}
+				gamecake.time_todo=0;
 				game.draw(gamecake,opts);
 				
 				gamecake.time_last=now;
