@@ -410,12 +410,26 @@ spew.div_wetv.append($('<video style="width:100%;height:100%;" '+
 	spew.update=function(){
 		if(!spew.ytapi) // reload youtube if it fails
 		{
+/*
 			var params = { allowScriptAccess: "always" , allowFullScreen:"true" , wmode:"transparent" };
 			var atts = { id: "wetspew_wetv_api" };
 			swfobject.embedSWF("http://www.youtube.com/v/ILN7jTJdn5U?rel=0&fs=1&autoplay=0&autohide=1&controls=1&enablejsapi=1&playerapiid=wetspew_wetv_api",
 							   "wetspew_wetv", "640", "480", "8", null, null, params, atts);
 							   
 			spew.ytapi=$("#wetspew_wetv_api")[0];
+*/
+//		spew.ytapi = undefined;
+		new YT.Player('wetspew_wetv', {
+			width: '640',
+			height: '480',
+			videoId: 'ILN7jTJdn5U',
+			events: {
+			'onReady': function(event) { spew.ytapi=event.target; }
+			//            ,'onStateChange': onPlayerStateChange
+			}
+		});
+        
+        
 		}
 		else
 		{
