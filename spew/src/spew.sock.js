@@ -305,6 +305,16 @@
 				var note=msg.note;
 				switch(note)
 				{
+					case "join":
+						if(msg.arg1)
+						{
+							spew.remember_name(msg.arg1);
+							if( (msg.arg2) && (msg.arg1!="*") )
+							{
+								users[msg.arg1].room=msg.arg2;
+							}
+						}
+					break;
 					case "rooms":
 						var aa=msg.list.split(",");
 						var order=[];
@@ -324,7 +334,7 @@
 							l="<div class=\"wetspew_line\" style=\"color:#"+color+"\">"+l+"</div>";
 							order[order.length]={l:l,n:count,s:name};
 						}
-						order.sort(function(a,b){return b.n-a.n;})
+						order.sort(function(a,b){if(b.n==a.n) { return (b.s<a.s)-(a.s<b.s); } else return b.n-a.n; });
 						spew.div_rooms.empty();
 						spew.div_rooms.append("<a class=\"spew_click\" title=\"chat\">Return to chat.</a>");
 						for(i in order)
@@ -359,8 +369,9 @@
 							l="<div class=\"wetspew_line\" style=\"color:#"+color+"\">"+l+"</div>";
 							order[order.length]={l:l,n:level,s:name};
 						}
-						order.sort(function(a,b){return b.n-a.n;})
+						order.sort(function(a,b){if(b.n==a.n) { return (b.s<a.s)-(a.s<b.s); } else return b.n-a.n; });
 						spew.div_users.empty();
+//						spew.div_users.append("You are in room, "+roomname);
 						spew.div_users.append("<a class=\"spew_click\" title=\"chat\">Return to chat.</a>");
 						for(i in order)
 						{

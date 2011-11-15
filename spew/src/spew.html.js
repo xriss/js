@@ -30,6 +30,15 @@
 	spew.click_tab=function()
 	{
 		var tab=$(this).html().toLowerCase();
+
+		if(tab=="fix")
+		{
+			spew.ytapi=undefined;
+			$("#wetspew_wetv").empty();
+			
+			return false;
+//			spew.send_msg(spew.cmd_to_msg("/users"));
+		}
 		
 		spew.show_tab(tab);
 		
@@ -228,7 +237,7 @@
 		spew.div_spew=$("<div class=\"wetspew_spew\"></div>");
 
 
-		spew.div_tabs=$("<div class=\"wetspew_tabs\"><a>CHAT</a><a>USERS</a><a>ROOMS</a><a>OPTS</a><a>HELP</a></div>");
+		spew.div_tabs=$("<div class=\"wetspew_tabs\"><a>FIX</a><a>CHAT</a><a>USERS</a><a>ROOMS</a><a>OPTS</a><a>HELP</a></div>");
 		spew.div_css=$("<div style=\"display:none;\"></div>");
 		spew.make_css_from_opts();		
 		spew.div_main=$("<div class=\"wetspew_main\"></div>");
@@ -424,8 +433,16 @@ spew.div_wetv.append($('<video style="width:100%;height:100%;" '+
 			height: '480',
 			videoId: 'ILN7jTJdn5U',
 			events: {
-			'onReady': function(event) { spew.ytapi=event.target; }
-			//            ,'onStateChange': onPlayerStateChange
+			'onReady': function(event) {
+					spew.ytapi=event.target;
+					spew.send_msg({cmd:"game",gcmd:"wetv",wetv:"ready"}); // get current vid
+				},
+			'onStateChange': function(event) {
+					if (event.data == YT.PlayerState.ENDED )
+					{
+						spew.send_msg({cmd:"game",gcmd:"wetv",wetv:"info"}); // this tells the server to play next vid
+					}
+				}
 			}
 		});
         
