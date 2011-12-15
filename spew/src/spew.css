@@ -141,8 +141,8 @@ margin: 0;
 .wetspew_tabs a {
 	background-color: #444;
 	color: black;
-	padding: 10px;
-	margin: 0 10px 0 0;
+	padding: 6px;
+	margin: 0 6px 0 0;
 	cursor: pointer;
 	line-height: 13px;
 }

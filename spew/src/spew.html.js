@@ -75,6 +75,12 @@
 			spew.div_main.append(spew.div_help);
 		}
 		else
+		if(tab=="news")
+		{
+			spew.div_main.empty();
+			spew.div_main.append(spew.div_news);
+		}
+		else
 		if(tab=="users")
 		{
 			spew.div_main.empty();
@@ -237,11 +243,12 @@
 		spew.div_spew=$("<div class=\"wetspew_spew\"></div>");
 
 
-		spew.div_tabs=$("<div class=\"wetspew_tabs\"><a>FIX</a><a>CHAT</a><a>USERS</a><a>ROOMS</a><a>OPTS</a><a>HELP</a></div>");
+		spew.div_tabs=$("<div class=\"wetspew_tabs\"><a>FIX</a><a>CHAT</a><a>USERS</a><a>ROOMS</a><a>OPTS</a><a>HELP</a><a>NEWS</a></div>");
 		spew.div_css=$("<div style=\"display:none;\"></div>");
 		spew.make_css_from_opts();		
 		spew.div_main=$("<div class=\"wetspew_main\"></div>");
 		spew.div_help=$("<div class=\"wetspew_help\"></div>");
+		spew.div_news=$("<div class=\"wetspew_news\"></div>");
 		spew.div_chat=$("<div class=\"wetspew_chat\"></div>");
 		spew.div_users=$("<div class=\"wetspew_users\"></div>");
 		spew.div_rooms=$("<div class=\"wetspew_rooms\"></div>");
@@ -253,6 +260,7 @@
 		spew.div_talk_form.append(spew.div_talk_form_input);
 
 		spew.div_help.html("<iframe style=\"width:100%;height:100%\" src=\"http://help.wetgenes.com/\"></iframe>");
+		spew.div_news.html("<iframe style=\"width:100%;height:100%\" src=\"http://wet.appspot.com/news.frame\"></iframe>");
 
 		spew.div_spew.append(spew.div_css);
 		spew.div_spew.append(spew.div_tabs);
