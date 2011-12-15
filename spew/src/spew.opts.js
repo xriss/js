@@ -97,12 +97,12 @@
 		if(spew.opts.full_size || spew.opts.ipod_chat)
 		{
 			s+=" .wetspew { width:100%; height:100%; top:0px; left:0px; right:0px; bottom:0px; 	margin:auto; position:fixed; } ";
-			s+=" .wetspew_wetv , #wetspew_wetv_api { width:67%; height:100%; } ";
+			s+=" .wetspew_wetv , #wetspew_wetv { width:67%; height:100%; } ";
 			s+=" .wetspew_spew { width:33%; height:100%; } ";
 		}
 		if(spew.opts.chat_only || spew.opts.ipod_chat)
 		{
-			s+=" .wetspew_wetv , #wetspew_wetv_api { display:none; } ";
+			s+=" .wetspew_wetv , #wetspew_wetv { display:none; } ";
 			s+=" .wetspew_spew { width:100%; height:100%; } ";
 		}
 		if(spew.opts.ipod_chat)

@@ -68,20 +68,21 @@ gamecake.gfx.text=function(opts){
 
 	self.align=function(s){
 		self.text_align=s;
+/*
 		if(s=="center")
 		{
-//					self.div.css({textAlign:"center"});
+					self.div.css({textAlign:"center"});
 		}
 		else 
 		if(s=="right")
 		{
-//					self.div.css({textAlign:"right"});
+					self.div.css({textAlign:"right"});
 		}
 		else 
 		{
-//					self.div.css({textAlign:"left"});
+					self.div.css({textAlign:"left"});
 		}
-		
+*/		
 		return self;
 	};
 
