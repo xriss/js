@@ -13,13 +13,15 @@ b				{font-weight:bold;}
 .wetjoin_page_login		{background-color:#009EFF;}
 .wetjoin_page_join		{background-color:#FF9F00;}
 .wetjoin_page_forgot	{background-color:#C62DFF;}
+.wetjoin_page_token		{background-color:#FE4065;}
 .wetjoin_main	{position:relative; min-height:100%; padding:40px; padding-top:0; text-align:center;}
 .wetjoin_header	{margin-bottom:20px;}
 
-.wetjoin a		{display:inline-block; vertical-align:bottom; padding:40px 30px 20px 30px; color:#fff; font-size:1.4em; letter-spacing:5px; font-weight:bold;}
+.wetjoin a		{display:inline-block; vertical-align:bottom; padding:30px 30px 20px 30px; color:#fff; font-size:1.4em; letter-spacing:5px; font-weight:bold;}
 .wetjoin a, .wetjoin a:link, .wetjoin a:visited, .wetjoin a:hover, .wetjoin a:focus	{text-decoration:none;}
-a.wetjoin_submit_login				{padding:20px 30px;}
 .wetjoin a:hover, .wetjoin a:focus	{color:#1D5768;}
+a.wetjoin_submit	{padding:20px 30px; color:#fff;}
+a.wetjoin_submit:hover	{color:#1D5768;}
 
 .wetjoin_art	{width:210px; height:210px; border-radius:500px; background:url('/media/translogo.png') center center; background-color:#00FFCF; margin:auto; border:10px solid #1A1A1A;}
 
@@ -36,4 +38,5 @@ a.wetjoin_submit_login				{padding:20px 30px;}
 
 input			{width:400px; padding:10px 20px; margin-bottom:20px; font-size:1.2em;}
 input.wetjoin_pass	{margin-bottom:0;}
+input.wetjoin_token	{margin-top:20px;}
 h2				{padding-top:20px; font-size:1.3em; letter-spacing:2px; font-weight:bold; font-family:monospace;}
