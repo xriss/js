@@ -11,7 +11,7 @@ exports.setup=function(opts){
 	calacts.template=$("<div></div>");
 		
 	calacts.fill=function(){
-		opts.div.empty().append( calacts.template.find(".calacts").clone() );
+		opts.div.empty().append( calacts.template.find(".calacts_main").clone() );
 
 
 	var now = new Date();
@@ -41,16 +41,16 @@ var myCalendar =
   },
   data: {
     // Event title
-    title: 'test',
+    title: v.act+' at '+v.place,
 
     // Event start date
-    start: new Date('June 15, 2013 19:00'),
+    start: new Date(calacts.monday),
 
     // Event duration (IN MINUTES)
     duration: 120,  
 
     // Event Address
-    address: 'The internet',
+    address: [],
 
     // Event Description
     description: 'Test cal.'
