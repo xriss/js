@@ -21,7 +21,21 @@ exports.setup=function(opts){
 
 
 		
-var myCalendar = ouical.createCalendar({
+var myCalendar = 
+
+
+		$(".calacts .tab").empty();
+		
+		for(var i=0;i<calacts.slots.length;i++)
+		{
+			var v=calacts.slots[i];
+			var l=calacts.template.find(".calacts_slot").clone();
+			
+			l.find(".act").text(v.act);
+			l.find(".day").text(v.day);
+			l.find(".time").text(v.time);
+			l.find(".place").text(v.place);
+			l.find(".cal").append(ouical.createCalendar({
   options: {
     class: 'calclass',
   },
@@ -41,9 +55,12 @@ var myCalendar = ouical.createCalendar({
     // Event Description
     description: 'Test cal.'
   }
-});
+}));
+			
+			$(".calacts .tab").append( l );
+		}
 
-		$(".calacts .tab").empty().append( myCalendar );
+		
 	};
 
 // load and parse raw CSV
