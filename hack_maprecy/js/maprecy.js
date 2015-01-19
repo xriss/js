@@ -10,7 +10,7 @@ exports.setup=function(opts){
 	maprecy.template=$("<div></div>");
 		
 	maprecy.fill=function(){
-		$(opts.div).empty().append( maprecy.template.find(".maprecy_main").clone() );
+//		$(opts.div).empty().append( maprecy.template.find(".maprecy_main").clone() );
 //		$(".maprecy .tab").append( l );
 
 	window.display_maprecy_map=function(){
