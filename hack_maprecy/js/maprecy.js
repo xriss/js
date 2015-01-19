@@ -36,6 +36,11 @@ exports.setup=function(opts){
 
 				var display_heatmap=function()
 				{
+					if(heatmap)
+					{
+						heatmap.setMap(null);
+					}
+
 					var data=maprecy.data;
 					
 					var latlnglump=function(n)
