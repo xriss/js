@@ -13,6 +13,8 @@ exports.setup=function(opts){
 //		$(opts.div).empty().append( maprecy.template.find(".maprecy_main").clone() );
 //		$(".maprecy .tab").append( l );
 
+
+
 	window.display_maprecy_map=function(){
 		
 				var mapOptions = {
@@ -32,30 +34,57 @@ exports.setup=function(opts){
 				var markerCluster;
 
 
-				heatmap_data = [];
-				
-				for(var lat in maprecy.heatmap)
+				var display_heatmap=function()
 				{
-					for(var lng in maprecy.heatmap[lat])
+					var data=maprecy.data;
+					
+					var latlnglump=function(n)
 					{
-						heatmap_data.push({
-							location : new google.maps.LatLng(lat/10000,lng/10000) ,	weight : maprecy.heatmap[lat][lng] || 1
-						});
+						return Math.floor(n*10000);
+					};
+					maprecy.heatmap={};
+					
+					var m1=maprecy.heatmap;
+					var cc=data.codes[maprecy.mode];
+					var ww=data.dumps[maprecy.mode];
+					var t=0;
+					for(var n in cc)
+					{
+						for(var i=0;i<cc[n].length;i++)
+						{
+							var v=cc[n][i];
+							var l=latlnglump(v.lat);
+							m1[l]=m1[l] || {};
+							var m2=m1[l];
+							var l=latlnglump(v.lng);
+							var w=v.weight*(ww[n] || 0); // weight * total to get relative values
+							m2[l]=(m2[l] || 0) + w;
+							t+=w;
+						}
 					}
-				}
-/*
-				for(var i=0;i<ctrack.map.heat.length;i++)
-				{
-					var v=ctrack.map.heat[i];
-					heatmap_data.push({
-						location : new google.maps.LatLng(v.lat,v.lng) ,	weight : v.wgt || 1
+					
+					console.log(maprecy.heatmap);
+
+
+					heatmap_data = [];
+					
+					for(var lat in maprecy.heatmap)
+					{
+						for(var lng in maprecy.heatmap[lat])
+						{
+							heatmap_data.push({
+								location : new google.maps.LatLng(lat/10000,lng/10000) ,	weight : maprecy.heatmap[lat][lng] || 0
+							});
+						}
+					}
+					heatmap = new google.maps.visualization.HeatmapLayer({
+					  data: heatmap_data
 					});
+					heatmap.setMap(map);
 				}
-*/
-				heatmap = new google.maps.visualization.HeatmapLayer({
-				  data: heatmap_data
-				});
-				heatmap.setMap(map);
+				window.display_heatmap=display_heatmap;
+				maprecy.mode="black";
+				display_heatmap();
 
 				var fixradius=function()
 				{
@@ -79,7 +108,7 @@ exports.setup=function(opts){
 
 
 	};
-
+	
 // load huge json data chunk of all the data we need
 	$(function() {
 		$.ajax({
@@ -87,31 +116,8 @@ exports.setup=function(opts){
 			url: "maprecy.json",
 			dataType: "json",
 			success: function(data) {
+				maprecy.data=data;
 				console.log(data);
-				
-				var latlnglump=function(n)
-				{
-					return Math.floor(n*10000);
-				};
-				maprecy.heatmap={};
-				
-				var m1=maprecy.heatmap;
-				var cc=data.codes.green;
-				for(var n in cc)
-				{
-					for(var i=0;i<cc[n].length;i++)
-					{
-						var v=cc[n][i];
-						var l=latlnglump(v.lat);
-						m1[l]=m1[l] || {};
-						var m2=m1[l];
-						var l=latlnglump(v.lng);
-						m2[l]=(m2[l] || 0) + v.weight/1000;
-					}
-				}
-				
-				console.log(maprecy.heatmap);
-				
 				
 				maprecy.template.load("maprecy.template.html",maprecy.fill);
 			}
