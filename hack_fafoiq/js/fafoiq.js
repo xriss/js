@@ -31,13 +31,26 @@ exports.setup=function(opts){
 		for(var name in fafoiq.schools)
 		{
 			var v=fafoiq.schools[name];
-			sa.push("<option value='"+v.name+"'>"+v.name+"</option>");
+			if(!v.intake_unknown)
+			{
+				sa.push("<option value='"+v.name+"'>"+v.name+"</option>");
+			}
 		}
 		sa.push("<select/>")
 		$(".fafoiq .selschool").empty().append($(sa.join()));
 		
 		$(".fafoiq .selschool select").on('change', function(event, params) {
-			console.log( $(".fafoiq .selschool select").val() );
+			var n=$(".fafoiq .selschool select").val();
+			var v=fafoiq.schools[n];
+
+			console.log( v );
+			
+			$("#intake").empty().append(""+v.intake);
+			$("#intake").parent().show();
+			
+			$("#pri1").empty().append(""+(v.priority_1a+v.priority_1b) );
+			$("#pri1").parent().show();
+
 		});
 
 		
@@ -85,6 +98,12 @@ exports.setup=function(opts){
 			return n;
 		};
 
+		var getfloat=function(s){
+			var n=parseFloat(s);
+			if(!n){n=0};
+			return n;
+		};
+
 		for(var i=0;i<fafoiq.objs.length;i++)
 		{
 			var t={};
@@ -106,6 +125,9 @@ exports.setup=function(opts){
 			{
 				t.intake_unknown=true;
 			}
+
+			var f1 =getfloat(v["Non Nearist"]);
+			var f2 =getfloat(v["Nearist"]);
 			
 			fafoiq.schools[t.name]=t;
 		}
