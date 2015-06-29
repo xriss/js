@@ -73,13 +73,36 @@ exports.setup=function(opts){
 			fafoiq.objs.push(t);
 		}
 		
-		console.log(fafoiq.objs);
+//		console.log(fafoiq.objs);
+		
+		var getint=function(s){
+			var n=parseInt(s,10);
+			if(!n){n=0};
+			return n;
+		};
 
 		for(var i=0;i<fafoiq.objs.length;i++)
 		{
 			var t={};
 			var v=fafoiq.objs[i];
 			t.name=v["School"];
+			
+			t.avail=getint("NumberOfPlacesAvailable");
+			
+			t.priority_1a=getint(v["Priority 1A"]);
+			t.priority_1b=getint(v["Priority 1B"]);
+			t.priority_2 =getint(v["Priority 2"]);
+			t.priority_3 =getint(v["Priority 3"]);
+			t.priority_4 =getint(v["Priority 4"]);
+			t.priority_5 =getint(v["Priority 5"]);
+
+			t.intake =t.priority_1a + t.priority_1b + t.priority_2 + t.priority_3 + t.priority_4 + t.priority_5 ;
+			
+			if(t.intake==0)
+			{
+				t.intake_unknown=true;
+			}
+			
 			fafoiq.schools[t.name]=t;
 		}
 
