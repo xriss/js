@@ -3,7 +3,7 @@ var ls=function(a) { console.log(util.inspect(a,{depth:null})); }
 
 exports.setup=function(opts){
 
-	var $=require("./jquery.js"); require("./jquery.csv.js");
+	$=require("./jquery.js"); require("./jquery.csv.js");
 	jQuery=$; require("chosen.jquery.js");
 
 	var fafoiq={opts:opts};
@@ -35,6 +35,10 @@ exports.setup=function(opts){
 		}
 		sa.push("<select/>")
 		$(".fafoiq .selschool").empty().append($(sa.join()));
+		
+		$(".fafoiq .selschool select").on('change', function(event, params) {
+			console.log( $(".fafoiq .selschool select").val() );
+		});
 
 		
 //		$(".fafoiq .results").empty();
