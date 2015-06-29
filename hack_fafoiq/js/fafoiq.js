@@ -16,7 +16,7 @@ exports.setup=function(opts){
 		$(opts.div).empty().append( fafoiq.template.find(".fafoiq_main").clone() );
 		
 		var sa=[];
-		sa.push("<select id='year'>");
+		sa.push("<select id='year' data-placeholder='What year?'>");
 		sa.push("<option value=''></option>");
 		for(year=1990;year<2014;year++)
 		{
@@ -26,7 +26,7 @@ exports.setup=function(opts){
 		$(".fafoiq .selyear").empty().append($(sa.join()));
 
 		var sa=[];
-		sa.push("<select id='school'>");
+		sa.push("<select id='school' data-placeholder='Type to search a school'>");
 		sa.push("<option value=''></option>");
 		for(var name in fafoiq.schools)
 		{
