@@ -37,7 +37,7 @@ exports.setup=function(opts){
 		$(".fafoiq .selschool").empty().append($(sa.join()));
 
 		
-		$(".fafoiq .results").empty();
+//		$(".fafoiq .results").empty();
 		
 		$('.selschool select').chosen();
 		$('.selyear select').chosen();
