@@ -1,0 +1,6 @@
+cd `dirname $0`
+
+NODE_PATH=$NODE_PATH:./js
+
+echo "browserify"
+node node_modules/browserify/bin/cmd.js -r ./js/fafoiq.js:fafoiq -d -p [minifyify --map fafoiq.map.json --output lib/fafoiq.map.json] -o lib/fafoiq.min.js

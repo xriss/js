@@ -1,0 +1,74 @@
+<html> 
+<head>
+<title>Waste Side Stories</title> 
+<script src="head.js" ></script>
+<link  href="maprecy.css" rel="stylesheet" type="text/css" >
+</head> 
+<body >
+
+<div class="maprecy" style="width:100%; padding:10px 0; background-color:#3E90F4; color:#fff; font-size:1.3em;">
+	<div style="width:960px; text-align:center; margin:0 auto;"><b>Leeds Waste Side Stories</b> (2013-2014)</div>
+</div>
+<div style="width:100%; height:480px; margin:0 auto; position:relative;">
+	<div id="map" style="width:100%; height:480px; margin:0 auto;"></div>
+	<div style="position:absolute; bottom:0px; right:0px; padding:20px; background-color:#fff;">
+		<div style="padding-bottom:5px; border-bottom:1px solid #ccc; color:#666; font-size:0.8em; font-weight:bold;">HEAT MAP LEGEND</div>
+		<div style="padding:10px 0;  vertical-align:bottom; color:#666;"><span style="background-color:#FF0000; width:20px; height:20px; display:inline-block; vertical-align:bottom;"></span> High levels of recyling</div>
+		<div style=" vertical-align:bottom; color:#666;"><span style="background-color:#00FF0E; width:20px; height:20px; display:inline-block; vertical-align:bottom;"></span> Low levels of recyling</div>
+		<div style="padding-top:10px;">
+			<a href="#" onclick="maprecy.mode='black';display_heatmap();" style="text-decoration:none;">BLACK</a>
+			<a href="#" onclick="maprecy.mode='green';display_heatmap();" style="text-decoration:none;">GREEN</a>
+			<a href="#" onclick="maprecy.mode='food' ;display_heatmap();" style="text-decoration:none;">FOOD</a>
+		</div>
+	</div>
+</div>
+<div style="width:33.3%; display:inline-block; vertical-align:top; background-color:#055BC6;">
+	<div style="padding:20px 40px;">
+		<div style="color:#fff; font-size:1.4em; padding-bottom:10px;">Average weight per ward/month</div>
+		<div style="color:#fff; font-weight:bold; font-size:4em; padding:20px 0 0 0;">573 tonnes</div>
+		<div style="padding:20px 0 0 0; color:#fff; font-weight:bold; font-size:1.4em; vertical-align:bottom;">Or the weight of 82 x <img src="ele.png" height="30px"></div>
+	</div>
+	<div style="color:#fff; font-size:0.9em; padding:20px 40px 19px 40px; background-color:#124C94;">
+		<div>There are 9 wards for recycling in the City of Leeds.</div>
+	</div>
+</div><div style="width:33.3%; display:inline-block; vertical-align:top; background-color:#FF5C00;">
+	<div style="padding:20px 40px;">
+		<div style="color:#fff; font-size:1.4em; padding-bottom:10px;">Most waste</div>
+		<div style="color:#fff; font-weight:bold; font-size:2em; line-height:1.42em;">
+			<div>Landfill General <span style="font-size:0.6em;">(17147)</span></div>
+			<div>Inerts <span style="font-size:0.6em;">(14554)</span></div>
+			<div>Timber <span style="font-size:0.6em;">(10543)</span></div>
+		</div>
+	</div>
+	<div style="color:#fff; font-size:0.9em; padding:20px 40px; background-color:#B1470B;">
+		<div>Weight is measured in tonnes.</div>
+	</div>
+</div><div style="width:33.3%; display:inline-block; vertical-align:top; background-color:#0DB800;">
+	<div style="padding:20px 40px;">
+		<div style="color:#fff; font-size:1.4em; padding-bottom:10px;">Least waste</div>
+		<div style="color:#fff; font-weight:bold; font-size:2em; line-height:1.42em;">
+			<div style="vertical-align:bottom;">Ink Cartridges <span style="font-size:0.6em;">(1) or 882 <img src="ink.png" height="20px"></span></div>
+			<div style="vertical-align:bottom;">Cans <span style="font-size:0.6em;">(3) or 185,220 <img src="can.png" height="20px"></span></div>
+			<div style="vertical-align:bottom;">Tetrapak <span style="font-size:0.6em;">(7) or 7 million <img src="milk.png" height="30px"></span></div>
+		</div>
+	</div>
+	<div style="color:#fff; font-size:0.9em; padding:20px 40px; background-color:#098200;">
+		<div>Weight is measured in tonnes.</div>
+	</div>
+</div>
+
+<script>
+
+head.js(
+"maprecy.min.js",
+function(){
+	
+		var opts={div:".maprecy"};
+		window.maprecy=require("maprecy").setup(opts);
+
+});
+
+</script>
+
+</body>
+</html>
