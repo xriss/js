@@ -1,9 +1,19 @@
-<div class="fafoiq_main search_wrap">
+<div class="fafoiq_main">
+	<script>
+		$(function(){
+			$('span.info').hide();
+			$('a.results').click(function () {
+				$(this).children('span.info').slideToggle("fast");
+			});
+		});
+	</script>
+	<div class="search_wrap">
 		<div class="search">
 			<span class="selschool"/>
 		</div><div class="search r">
 			<span class="selyear"/>
 		</div>
+	</div>
 <div class="max">
 	<div class="head">Frequently Asked FOI Questions</div>
 <div class="results2">
