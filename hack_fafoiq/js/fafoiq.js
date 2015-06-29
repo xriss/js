@@ -51,6 +51,9 @@ exports.setup=function(opts){
 			$("#pri1").empty().append(""+(v.priority_1a+v.priority_1b) );
 			$("#pri1").parent().show();
 
+			$("#dist").empty().append(""+(v.dist) );
+			$("#dist").parent().show();
+
 		});
 
 		
@@ -126,8 +129,11 @@ exports.setup=function(opts){
 				t.intake_unknown=true;
 			}
 
-			var f1 =getfloat(v["Non Nearist"]);
-			var f2 =getfloat(v["Nearist"]);
+			var f1 =getfloat(v["Non Nearest"]);
+			var f2 =getfloat(v["Nearest"]);
+			var f=f1; if(f2>f1) { f=f2; }
+			
+			t.dist=f;
 			
 			fafoiq.schools[t.name]=t;
 		}
