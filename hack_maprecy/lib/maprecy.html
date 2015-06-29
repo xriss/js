@@ -1,0 +1,76 @@
+<html> 
+<head>
+<title>Leeds Waste Side Stories</title> 
+<script src="head.js" ></script>
+<link  href="maprecy.css" rel="stylesheet" type="text/css" >
+</head> 
+<body >
+
+<div class="maprecy">
+	<div class="default"><b>Leeds Waste Side Stories</b> (2013-2014)</div>
+</div>
+<div class="max">
+	<div id="map"></div>
+	<div id="legend">
+		<div class="legend_head">HEAT MAP LEGEND</div>
+		<div class="legend_txt"><span class="icon red"></span> Concentrated levels of recyling</div>
+		<div class="legend_txt"><span class="icon green"></span> Normal levels of recyling</div>
+		<div class="legend_links">
+			<a href="#" onclick="maprecy.mode='black';display_heatmap();" class="">BLACK BIN</a>
+			<a href="#" onclick="maprecy.mode='green';display_heatmap();" class="green">GREEN BIN</a>
+			<a href="#" onclick="maprecy.mode='food' ;display_heatmap();" class="food">FOOD</a>
+		</div>
+	</div>
+</div>
+<table>
+	<tr>
+		<td class="snaps blue">
+			<div class="snaps_wrap">
+				<div class="snaps_head">Average weight per ward/month</div>
+				<div class="snaps_large">573 tonnes</div>
+				<div class="snaps_medium">Or the weight of 82 x <img src="ele.png" height="30px"></div><!-- icon by Nicolas Ramallo from http://thenounproject.com/term/elephant/7185/ -->
+			</div>
+		</td>
+		<td class="snaps orange">
+			<div class="snaps_wrap">
+				<div class="snaps_head">Most waste</div>
+				<div class="snaps_txt">
+					<div>Landfill General <span class="snaps_num">(17147)</span></div>
+					<div>Inerts <span class="snaps_num">(14554)</span></div>
+					<div>Timber <span class="snaps_num">(10543)</span></div>
+			</div>
+	</div>
+		</td>
+		<td class="snaps green">
+			<div class="snaps_wrap">
+				<div class="snaps_head">Least waste</div>
+				<div class="snaps_txt">
+					<div class="vert_bottom">Ink Cartridges <span class="snaps_num">(1) or 882 <img src="ink.png" height="20px" class="vert_baseline"></span></div><!-- icon by Dan Hetteix from http://thenounproject.com/term/ink-cartridge/20277/ -->
+					<div class="vert_bottom">Cans <span class="snaps_num">(3) or 185,220 <img src="can.png" height="20px" class="vert_baseline"></span></div><!-- icon by Lloyd Humphreys from http://thenounproject.com/term/can/96451/-->
+					<div class="vert_bottom">Tetrapak <span class="snaps_num">(7) or 7 million <img src="milk.png" height="30px" class="vert_baseline"></span></div><!-- icon by Jannis Schäfer from http://thenounproject.com/term/carton/88557/ -->
+				</div>
+			</div>
+		</td>	
+	</tr>
+	<tr>
+		<td class="snaps_info blue">There are 9 wards for recycling in the City of Leeds.</td>
+		<td class="snaps_info orange">Weight is measured in tonnes.</td>
+		<td class="snaps_info green">Weight is measured in tonnes.</td>
+	</td>
+</table>
+
+<script>
+
+head.js(
+"maprecy.min.js",
+function(){
+	
+		var opts={div:".maprecy"};
+		window.maprecy=require("maprecy").setup(opts);
+
+});
+
+</script>
+
+</body>
+</html>
