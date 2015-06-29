@@ -19,7 +19,7 @@ exports.setup=function(opts){
 		
 				var mapOptions = {
 				  center: new google.maps.LatLng(53.7997,-1.5492),
-				  zoom: 16,
+				  zoom: 12,
 				  scrollwheel: true
 				};
 				var map = new google.maps.Map(document.getElementById("map"),
