@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script>
+			$(function(){
+				$('span.info').hide();
+				$('a.results').click(function () {
+					$(this).children('span.info').slideToggle("fast");
+				});
+			});
+		</script>
+		<style>
+			body		{background-color:#FFF; width:100%; margin:0 auto; font-family:sans-serif; color:#1F2733;}
+			a			{text-decoration:none; color:#1F2733;}
+			a:hover		{text-decoration:none;}
+			.search		{display:inline-block; vertical-align:top; width:540px; margin:0 auto; margin-top:60px; margin-bottom:60px; background-color:#FFF; padding:40px 0; padding-left:0; font-size:3em; color:#1F2733;}
+			.search.r	{width:300px; margin-left:40px;}
+			.max		{width:100%; margin:0 auto; background-color:#D9E0EC;}
+			.results_wrap	{width:960px; margin:0 auto; padding-top:40px; padding-bottom:60px;}
+			.search_wrap	{width:960px; margin:0 auto;}
+			a.results		{display:inline-block; vertical-align:top; width:400px; padding:20px; font-size:1.4em; margin-bottom:40px; background-color:#FFF; margin-right:40px; font-weight:bold;}
+			a.results:last-of-type	{margin-right:0;}
+			a.results:hover	{cursor:pointer;}
+			.head		{width:960px; margin:0 auto; padding-top:40px; font-size:2em;}
+			span.info	{display:block; padding:20px 0; font-size:0.9em; font-weight:normal;}
+			span.get	{display:block; font-size:0.7em; color:#656F7D; padding-top:40px;}
+			span.get:hover	{color:#1F2733;}
+			span.get.q	{padding-top:20px;}
+		</style>
+	</head>
+	<body>
+		<div class="search_wrap">
+			<div class="search">
+				Type to search a school
+			</div><div class="search r">
+				What Year?
+			</div>
+		</div>
+		<div class="max">
+			<div class="head">Frequently Asked FOI Questions</div>
+			<div class="results_wrap">
+				<a class="results">
+					What was the intake of the School?
+					<span class="info">
+						60
+						<span class="get">Get a link to this question to share, tweet, email.</span>
+						<span class="get q">Find similar answer on whatdotheyknow.com</span>
+					</span>
+				</a><a class="results">
+					How many children were accepted at Priority 1?
+					<span class="info">
+						a) Children in public care or fostered under an arrangement made by the local authority.
+						<p>
+						b) Pupils without a statement but who have Special Educational Needs, or with exceptional medical or mobility needs, that can only be met at a specific school.</p>
+						<span class="get">Get a link to this question to share, tweet, email.</span>
+						<span class="get q">Find similar answer on whatdotheyknow.com</span>
+					</span>
+				</a>
+				<a class="results">
+					How many successful appeals have there been for this year?
+					<span class="info">
+						3
+						<span class="get">Get a link to this question to share, tweet, email.</span>
+						<span class="get q">Find similar answer on whatdotheyknow.com</span>
+					</span>
+				</a><a class="results">
+					What is the furthest distance of successful applicant?
+					<span class="info">
+						3 miles
+						<span class="get">Get a link to this question to share, tweet, email.</span>
+						<span class="get q">Find similar answer on whatdotheyknow.com</span>
+					</span>
+				</a>
+				<a class="results">
+					How many places were offered for this school?
+					<span class="info">
+						45
+						<span class="get">Get a link to this question to share, tweet, email.</span>
+						<span class="get q">Find similar answer on whatdotheyknow.com</span>
+					</span>
+				</a><a class="results">
+					Admission of children as 2nd Preference
+				</a>
+				<a class="results">
+					Can you tell me the number of pupils travelling from outside of the school's catchment area?
+					<span class="info">
+					Education Leeds schools do not have catchment areas. <p>We calculate the distance of the pupil's home address to the school and offers are made based on this calculation. Therefore there are no catchment areas within the city.</p>
+						<span class="get">Get a link to this question to share, tweet, email.</span>
+						<span class="get q">Find similar answer on whatdotheyknow.com</span>
+					</span>
+				</a><a class="results">
+					Successful appeals
+				</a>
+			</div>
+		</div>
+	</body>
+</html>
