@@ -1,7 +1,7 @@
 
 exports.setup=function(spew){
 	
-	var $=require("jquery");
+	var $=require("./jquery.js");
 
 	spew.click_login=function()
 	{

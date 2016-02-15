@@ -12,8 +12,8 @@ var argv=require('yargs').argv; global.argv=argv;
 
 argv.port=argv.port||1337;
 
-app.use(express.logger());
-app.use(express.json());
+//app.use(express.logger());
+//app.use(express.json());
 
 app.use( function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -22,7 +22,7 @@ app.use( function(req, res, next) {
     next();
 });
 
-app.use(express.compress());
+//app.use(express.compress());
 
 app.use(express.static(__dirname+"/../lib/"));
 
