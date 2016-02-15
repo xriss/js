@@ -1,0 +1,11 @@
+cd `dirname $0`
+
+mkdir -p ../../xixs.bitbucket.org/js/hack_fafoiq
+rm -rf ../../xixs.bitbucket.org/js/hack_fafoiq/*
+cp -r lib/* ../../xixs.bitbucket.org/js/hack_fafoiq
+
+cd ../../xixs.bitbucket.org
+hg addremove
+hg ci -m"js/hack_fafoiq"
+hg push
+

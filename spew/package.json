@@ -1,0 +1,12 @@
+{
+  "name": "build",
+  "description": "build",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "browserify": "*",
+    "minifyify": "*",
+    "express": "*",
+    "yargs": "*"
+  }
+}
