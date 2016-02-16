@@ -480,16 +480,23 @@ spew.div_wetv.append($('<video style="width:100%;height:100%;" '+
 								if (event.data == YT.PlayerState.PLAYING ) // get some data
 								{
 									var info=spew.get_video_info(event.data);
-//									console.log(info);
+//console.log(info);
 									spew.send_msg({cmd:"game",gcmd:"wetv",wetv:"info",  // inform server of video title/etc
-										vid_id:info.id,
-										vid_len:info.duraton,
-										vid_title:info.title
+										video:info.id,
+										duration:(""+Math.floor(info.duration)),
+										title:info.title
 									});
 								}
+								else
 								if (event.data == YT.PlayerState.ENDED )
 								{
-									spew.send_msg({cmd:"game",gcmd:"wetv",wetv:"info"}); // this tells the server to play next vid
+									var info=spew.get_video_info(event.data);
+//console.log(info);
+									spew.send_msg({cmd:"game",gcmd:"wetv",wetv:"info", // this jolts the server so it plays the next vid
+										video:info.id,
+										duration:(""+Math.floor(info.duration)),
+										title:info.title
+									});
 								}
 							}
 						}
@@ -578,9 +585,9 @@ spew.div_wetv.append($('<video style="width:100%;height:100%;" '+
 		var data=spew.ytapi.getVideoData();
 		var ret={
 			duration:duration,
-			id:data.video_id,
-			author:data.author,
-			title:data.title
+			id:data&&data.video_id,
+			author:data&&data.author,
+			title:data&&data.title
 		};		
 		return ret;
 	};
