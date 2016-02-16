@@ -465,12 +465,28 @@ spew.div_wetv.append($('<video style="width:100%;height:100%;" '+
 						width: '640',
 						height: '480',
 						videoId: '9XVcIi-sLlk',
+						playerVars:{
+							enablejsapi:true,
+							playsinline:true,
+							rel:false,
+							showinfo:true
+						},
 						events: {
 						'onReady': function(event) {
 								spew.ytapi=event.target;
 								spew.send_msg({cmd:"game",gcmd:"wetv",wetv:"ready"}); // get current vid
 							},
 						'onStateChange': function(event) {
+								if (event.data == YT.PlayerState.PLAYING ) // get some data
+								{
+									var info=spew.get_video_info(event.data);
+//									console.log(info);
+									spew.send_msg({cmd:"game",gcmd:"wetv",wetv:"info",  // inform server of video title/etc
+										vid_id:info.id,
+										vid_len:info.duraton,
+										vid_title:info.title
+									});
+								}
 								if (event.data == YT.PlayerState.ENDED )
 								{
 									spew.send_msg({cmd:"game",gcmd:"wetv",wetv:"info"}); // this tells the server to play next vid
@@ -554,6 +570,19 @@ spew.div_wetv.append($('<video style="width:100%;height:100%;" '+
 			spew.send_msg(spew.cmd_to_msg(line));
 		}
 
+	};
+	
+	spew.get_video_info=function(event){
+
+		var duration=spew.ytapi.getDuration();
+		var data=spew.ytapi.getVideoData();
+		var ret={
+			duration:duration,
+			id:data.video_id,
+			author:data.author,
+			title:data.title
+		};		
+		return ret;
 	};
 
 };

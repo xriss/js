@@ -27,8 +27,12 @@ background:#000;
 
 <script type="text/javascript">
 
+var onYouTubeIframeAPIReady_called=false;
+function onYouTubeIframeAPIReady(){ onYouTubeIframeAPIReady_called=true; }
+
 head.js(
-"http://www.youtube.com/player_api",
+//"http://www.youtube.com/player_api",
+"http://www.youtube.com/iframe_api",
 "spew.min.js",
 function(){
 	
