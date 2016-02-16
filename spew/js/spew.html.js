@@ -469,7 +469,8 @@ spew.div_wetv.append($('<video style="width:100%;height:100%;" '+
 							enablejsapi:true,
 							playsinline:true,
 							rel:false,
-							showinfo:true
+							showinfo:true,
+							modestbranding: true
 						},
 						events: {
 						'onReady': function(event) {
