@@ -141,6 +141,10 @@ then we redirect back to the external site
 			cont({S:join.vars.session});
 		}
 		else
+		if(cmd=="avatar"){
+			join.page("avatar2");
+		}
+		else
 		if(cmd=="forgot"){
 			join.page("forgot2");
 		}
@@ -173,15 +177,24 @@ then we redirect back to the external site
 
 		$(".wetjoin_main .wetjoin_error").text("");
 
-		var token=$(".wetjoin_main .wetjoin_token").val();
-		var name= $(".wetjoin_main .wetjoin_name" ).val();
-		var email=$(".wetjoin_main .wetjoin_email").val();
-		var pass= $(".wetjoin_main .wetjoin_pass" ).val();
+		var token= $(".wetjoin_main .wetjoin_token" ).val();
+		var name=  $(".wetjoin_main .wetjoin_name"  ).val();
+		var email= $(".wetjoin_main .wetjoin_email" ).val();
+		var pass=  $(".wetjoin_main .wetjoin_pass"  ).val();
+		
+		var avatar=$(".wetjoin_main .wetjoin_avatar_preview").attr("src")
 
 		if(cmd=="join"){
 			$.post( join.userapi+"create",{
 				"name":name,"email":email,"pass":pass
 			},function(a,b,c){return join.callback("join",a,b,c);},"json");
+			return false;
+		}
+		else
+		if(cmd=="avatar"){
+			$.post( join.userapi+"avatar",{
+				"name":name,"pass":pass,"avatar":avatar,
+			},function(a,b,c){return join.callback("avatar",a,b,c);},"json");
 			return false;
 		}
 		else
@@ -242,10 +255,42 @@ then we redirect back to the external site
 		return false;
 	};
 
+	join.process_avatar=function()
+	{
+
+		var preview=$(".wetjoin_main .wetjoin_avatar_preview")
+		var file=$(".wetjoin_main .wetjoin_avatar")[0].files[0]
+
+		preview.attr("src","");
+
+		if(file)
+		{
+			var reader=new FileReader()
+			reader.onloadend=function()
+			{
+				var img=new Image();
+				img.src=reader.result;
+				img.onload=function()
+				{
+					var canvas=document.createElement('canvas');			
+					var ctx=canvas.getContext('2d');
+					canvas.width=100;
+					canvas.height=100;
+					ctx.drawImage(img,0,0,100,100);	
+					preview.attr("src",canvas.toDataURL());
+				}
+			}
+			reader.readAsDataURL(file)
+		}
+
+	}
+
+
 	join.bind=function(){
 		$(".wetjoin_main .wetjoin_header_join"   ).off("click").on("click",function(){return join.page("join");});
 		$(".wetjoin_main .wetjoin_header_login"  ).off("click").on("click",function(){return join.page("login");});
 		$(".wetjoin_main .wetjoin_header_forgot" ).off("click").on("click",function(){return join.page("forgot");});
+		$(".wetjoin_main .wetjoin_header_avatar" ).off("click").on("click",function(){return join.page("avatar");});
 
 		$(".wetjoin_main .wetjoin_submit_login"  ).off("click").on("click",function(){return join.submit("login");});
 		$(".wetjoin_main .wetjoin_submit_join"   ).off("click").on("click",function(){return join.submit("join");});
@@ -255,6 +300,8 @@ then we redirect back to the external site
 
 		$(".wetjoin_main .wetjoin_confirm").off("click").on("click",function(){return join.dumid_confirm(true);});
 		$(".wetjoin_main .wetjoin_deny"   ).off("click").on("click",function(){return join.dumid_confirm(false);});
+
+		$(".wetjoin_main .wetjoin_avatar"   ).on("change",function(){ return join.process_avatar() });
 
 		// enter in inputs will auto force a submit
 		$(".wetjoin_main input").off("keypress").on("keypress",function(e){

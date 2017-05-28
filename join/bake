@@ -1,6 +1,7 @@
 cd `dirname $0`
 
 NODE_PATH=$NODE_PATH:./js
+NODE_MODULES=$NODE_MODULES:./js
 
 echo "browserify"
 node node_modules/browserify/bin/cmd.js -r ./js/join.js:join -d -p [minifyify --map join.map.json --output lib/join.map.json] -o lib/join.min.js
