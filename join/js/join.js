@@ -31,7 +31,7 @@ then we redirect back to the external site
 
 */
 	join.userapi="http://api.wetgenes.com:1408/genes/user/";
-//	join.userapi="http://host.local:1408/genes/user/";
+//	join.userapi="http://host.local:9999/genes/user/";
 
 	join.template=$("<div></div>");
 		
@@ -292,6 +292,7 @@ then we redirect back to the external site
 		$(".wetjoin_main .wetjoin_header_forgot" ).off("click").on("click",function(){return join.page("forgot");});
 		$(".wetjoin_main .wetjoin_header_avatar" ).off("click").on("click",function(){return join.page("avatar");});
 
+		$(".wetjoin_main .wetjoin_submit_avatar" ).off("click").on("click",function(){return join.submit("avatar");});
 		$(".wetjoin_main .wetjoin_submit_login"  ).off("click").on("click",function(){return join.submit("login");});
 		$(".wetjoin_main .wetjoin_submit_join"   ).off("click").on("click",function(){return join.submit("join");});
 		$(".wetjoin_main .wetjoin_submit_forgot" ).off("click").on("click",function(){return join.submit("forgot");});
