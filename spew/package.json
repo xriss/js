@@ -3,9 +3,17 @@
   "description": "build",
   "version": "0.0.1",
   "private": true,
+  "devDependencies": {
+    "brfs": "^2.0.2",
+    "browserify": "^17.0.0",
+    "browserify-css": "^0.15.0",
+    "download": "^8.0.0",
+    "servez": "^1.11.0",
+    "terser": "^5.7.0",
+    "uglifyify": "^5.0.2",
+    "watchify": "^4.0.0"
+  },
   "dependencies": {
-    "browserify": "*",
-    "minifyify": "*",
     "express": "*",
     "yargs": "*"
   }

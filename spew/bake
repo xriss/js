@@ -3,4 +3,5 @@ cd `dirname $0`
 NODE_PATH=$NODE_PATH:./js
 
 echo "browserify"
-node node_modules/browserify/bin/cmd.js -r ./js/spew.js:spew -d -p [minifyify --map spew.map.json --output lib/spew.map.json] -o lib/spew.min.js
+#node node_modules/browserify/bin/cmd.js -v -r ./js/spew.js:spew -d -p [minifyify --map spew.map.json --output lib/spew.map.json] -o lib/spew.min.js
+npx browserify -t brfs -g [ browserify-css --autoInject=false --minify=true --stripComments=true ] -g uglifyify -r ./js/spew.js:spew -d | pv | npx terser --source-map --output lib/spew.min.js

@@ -1,5 +1,3 @@
-// Copyright (c) 2014 International Aid Transparency Initiative (IATI)
-// Licensed under the MIT license whose full text can be found at http://opensource.org/licenses/MIT
 
 var util=require('util');
 var express = require('express');
@@ -26,6 +24,6 @@ app.use( function(req, res, next) {
 
 app.use(express.static(__dirname+"/../lib/"));
 
-console.log("Starting server at http://localhost:"+argv.port+"/");
+console.log("Starting server at http://localhost:"+argv.port+"/spew.html");
 
 app.listen(argv.port);
