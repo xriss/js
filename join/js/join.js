@@ -30,7 +30,7 @@ then we ask the user if they want the external site to know their info
 then we redirect back to the external site
 
 */
-	join.userapi="http://api.wetgenes.com:1408/genes/user/";
+	join.userapi="https://api.wetgenes.com/genes/user/";
 //	join.userapi="http://host.local:9999/genes/user/";
 
 	join.template=$("<div></div>");
