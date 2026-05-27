@@ -162,7 +162,7 @@ exports.setup=function(spew){
 		txt=ansi_up.ansi_to_html(txt);
 	  }
 	  
-	  var frmlnk="<a target=\"_blank\" href=\"http://wetgenes.com/genes/profile/"+frm+"\" class=\"wetspew_name\" >"+frm+"</a>"
+	  var frmlnk="<a target=\"_blank\" href=\"https://wetgenes.com/genes/profile/"+frm+"\" class=\"wetspew_name\" >"+frm+"</a>"
 	  
 		switch(cmd)
 		{
@@ -173,7 +173,7 @@ exports.setup=function(spew){
 				}
 				else
 				{
-					s="<img src=\"http://wetgenes.com/genes/avatar/"+frm+"\" class=\"wetspew_icon\" />"+frmlnk+": "+spew.autoHTMLlinks(txt);
+					s="<img src=\"https://wetgenes.com/genes/avatar/"+frm+"\" class=\"wetspew_icon\" />"+frmlnk+": "+spew.autoHTMLlinks(txt);
 				}
 			break;
 			
@@ -188,7 +188,7 @@ exports.setup=function(spew){
 			case "lnk":
 				if(msg.lnk.match(/(jpg|png|gif|jpeg)$/)) // it is probably an image, embed it via bouncer
 				{
-					s="<img src=\"http://wetgenes.com/genes/avatar/"+frm+"\" class=\"wetspew_icon\" />"+frmlnk+": "+spew.autoHTMLimg(msg.lnk)
+					s="<img src=\"https://wetgenes.com/genes/avatar/"+frm+"\" class=\"wetspew_icon\" />"+frmlnk+": "+spew.autoHTMLimg(msg.lnk)
 				}
 				else
 				{
@@ -247,6 +247,22 @@ exports.setup=function(spew){
 	{
 		spew.ws=new WebSocket(spew.server_address);
 		
+let getCookie = function (cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 		spew.ws.onopen = function() {
 		
 			spew.display_note("Congratulations websockets are working and you have connected to "+spew.server_address);
@@ -257,9 +273,16 @@ exports.setup=function(spew){
 			
 			spew.send_msg({cmd:"note",note:"playing",arg1:"wetv",arg2:"",arg3:"",arg4:"",hash:hash});
 			
+			let fud_session=getCookie("fud_session")
+console.log("fud_session",fud_session)
 			if(spew.opts["S"])
 			{
 				spew.send_msg({cmd:"session",sess:spew.opts["S"]});
+			}
+			else
+			if(fud_session)
+			{
+				spew.send_msg({cmd:"session",sess:fud_session});
 			}
 
 
@@ -339,9 +362,9 @@ exports.setup=function(spew){
 							var count=parseInt(a[1]);
 							var color="fff";
 
-							l+="<img src=\"http://wetgenes.com/genes/avatar/"+basename+"\" class=\"wetspew_icon\" />";
+							l+="<img src=\"https://wetgenes.com/genes/avatar/"+basename+"\" class=\"wetspew_icon\" />";
 							l+="<span class=\"wetspew_count\">"+count+"</span>";
-							l+="<a target=\"_blank\" href=\"http://wetgenes.com/genes/profile/"+basename+"\" class=\"wetspew_name\">"+name+"</a>";
+							l+="<a target=\"_blank\" href=\"https://wetgenes.com/genes/profile/"+basename+"\" class=\"wetspew_name\">"+name+"</a>";
 							l="<div class=\"wetspew_line\" style=\"color:#"+color+"\">"+l+"</div>";
 							order[order.length]={l:l,n:count,s:name};
 						}
@@ -373,10 +396,10 @@ exports.setup=function(spew){
 							
 							spew.remember_name(name);
 							
-							l+="<img src=\"http://wetgenes.com/genes/avatar/"+name+"\" class=\"wetspew_icon\" />";
+							l+="<img src=\"https://wetgenes.com/genes/avatar/"+name+"\" class=\"wetspew_icon\" />";
 							l+="<span class=\"wetspew_form\">"+form+"</span>";
-							l+="<a target=\"_blank\" href=\"http://wetgenes.com/genes/profile/"+name+"\" class=\"wetspew_name\">"+name+"</a>";
-							l+="<a target=\"_blank\" href=\"http://wetgenes.com/genes/game/"+gameid+"\" class=\"wetspew_gamename\">"+game+"</a>";
+							l+="<a target=\"_blank\" href=\"https://wetgenes.com/genes/profile/"+name+"\" class=\"wetspew_name\">"+name+"</a>";
+							l+="<a target=\"_blank\" href=\"https://wetgenes.com/genes/game/"+gameid+"\" class=\"wetspew_gamename\">"+game+"</a>";
 							l="<div class=\"wetspew_line\" style=\"color:#"+color+"\">"+l+"</div>";
 							order[order.length]={l:l,n:level,s:name};
 						}

@@ -32,29 +32,20 @@ function onYouTubeIframeAPIReady(){ onYouTubeIframeAPIReady_called=true; }
 
 head.js(
 //"http://www.youtube.com/player_api",
-"http://www.youtube.com/iframe_api",
+"https://www.youtube.com/iframe_api",
 "spew.min.js",
 function(){
 	
 	var setup=function(){	
 	
-		var opts={div:".wetspew",host:"spew.wetgenes.com",art:"",cachebreak:"?v1"};
+		var opts={div:".wetspew",host:"wetgenes.com",art:"",cachebreak:"?v1"};
 //		opts.host="127.0.0.1";
 		var spew=require("spew").setup(opts);
 
 	};
 
-	if(typeof window.WebSocket!=='undefined')
-	{
-		setup();
-	}
-	else // load flash sockets
-	{
-		window.WEB_SOCKET_SWF_LOCATION = "WebSocketMainInsecure.swf"; // flash fallback socks
-		head.js("web_socket.js","swfobject.js",function(){
-			setup();
-		});
-	}
+	setup();
+
 });
 
 </script>

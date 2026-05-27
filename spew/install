@@ -1,0 +1,6 @@
+cd `dirname $0`
+
+# install the js project into the js directory of the gamecake genes mod
+
+rsync -r lib/ /server/public/tv.wetgenes.com
+
