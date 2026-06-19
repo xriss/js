@@ -263,6 +263,23 @@ let getCookie = function (cname) {
   return "";
 }
 
+		spew.ws.clear_pingpong = function() {
+			if(spew.ws.pingpongid) // remove old
+			{
+				clearInterval(spew.ws.pingpongid)
+				spew.ws.pingpongid=null
+			}
+		}
+
+		spew.ws.start_pingpong = function() {
+			spew.ws.clear_pingpong()
+			spew.ws.pingpongid=setInterval(spew.ws.pingpong,60000) // try once a sec
+		}
+
+		spew.ws.pingpong = function() {
+				spew.send_msg({cmd:"ping"})
+		}
+
 		spew.ws.onopen = function() {
 		
 			spew.display_note("Congratulations websockets are working and you have connected to "+spew.server_address);
@@ -274,7 +291,7 @@ let getCookie = function (cname) {
 			spew.send_msg({cmd:"note",note:"playing",arg1:"wetv",arg2:"",arg3:"",arg4:"",hash:hash});
 			
 			let fud_session=getCookie("fud_session")
-console.log("fud_session",fud_session)
+//console.log("fud_session",fud_session)
 			if(spew.opts["S"])
 			{
 				spew.send_msg({cmd:"session",sess:spew.opts["S"]});
@@ -285,12 +302,15 @@ console.log("fud_session",fud_session)
 				spew.send_msg({cmd:"session",sess:fud_session});
 			}
 
+			spew.ws.start_pingpong()
 
 //			console.log("spew open");
 		};
 		
 		spew.ws.onclose = function(evt) {
 		
+			spew.ws.clear_pingpong()
+
 			spew.display_note("Disconnected from "+spew.server_address);
 			
 			spew.ws = null;
